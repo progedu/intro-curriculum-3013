@@ -29,5 +29,5 @@ var server = http.createServer((req, res) => {
 });
 var port = 8000;
 server.listen(port, () => {
-	console.info('[' + new Date() + ']Listening on ' + port);
+	console.info('[' + new Date() + '] Listening on ' + port);
 });
