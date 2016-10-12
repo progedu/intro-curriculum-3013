@@ -10,15 +10,19 @@ const server = http.createServer((req, res) => {
 
 	switch (req.method) {
 		case 'GET':
-			res.write('GET ' + req.url);
+			res.write('GET ' + req.url + '\n');
 			break;
 		case 'POST':
-			res.write('POST ' + req.url);
+			res.write('POST ' + req.url + '\n');
 			req.on('data', (data) => {
 				console.info('[' + now + '] Data posted: ' + data);
 			});
 			break;
+		case 'DELETE':
+			res.write('DELETE ' + req.url + '\n');
+			break;
 		default:
+			res.write(req.method + ' method not supported now \n');
 			break;
 	}
 	res.end();
