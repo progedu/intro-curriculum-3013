@@ -11,13 +11,17 @@ const server = http.createServer((req, res) => {
 	switch (req.method) {
 		case 'GET':
 			res.write('GET ' + req.url);
-			break;
+			break;	
 		case 'POST':
 			res.write('POST ' + req.url);
 			req.on('data', (data) => {
 				console.info('[' + now + '] Data posted: ' + data);
 			});
 			break;
+		case 'DELETE':
+		    res.write('DELETE' + req.url);
+			break;
+
 		default:
 			break;
 	}
