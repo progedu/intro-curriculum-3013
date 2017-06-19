@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
 			});
 			break;
 		case 'DELETE':
-		    rea.write('DELETE ' + req.url);
+		    　　　　　　　　rea.write('DELETE ' + req.url);
 			break;
 		default:
 			break;
