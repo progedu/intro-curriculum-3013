@@ -9,13 +9,16 @@ const server = http.createServer((req, res) => {
 
 	switch (req.method) {
 		case 'GET':
-			res.write('GET ' + req.url);
+			res.write('GETだぜ! ' + req.url);
 			break;
 		case 'POST':
-			res.write('POST ' + req.url);
+			res.write('送信したよ ' + req.url);
 			req.on('data', (data) => {
 				console.info('[' + now + '] Data posted: ' + data);
 			});
+			break;
+			case 'DELETE':
+			res.write('削除しましたよ ' + req.url);
 			break;
 		default:
 			break;
