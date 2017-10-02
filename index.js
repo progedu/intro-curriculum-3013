@@ -21,6 +21,9 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+		case 'DERITE':
+		res.write('DELETE ' + req.url);
+		break;
 		default:
 			break;
 	}
