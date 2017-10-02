@@ -4,7 +4,8 @@ const server = http.createServer((req, res) => {
 	const now = new Date();
 	console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
 	res.writeHead(200, {
-		'Content-Type': 'text/plain; charset=utf-8'
+		'Content-Type': 'text/plain',
+		'charset': 'utf-8'
 	});
 
 	switch (req.method) {
@@ -20,6 +21,9 @@ const server = http.createServer((req, res) => {
 				body = Buffer.concat(body).toString();
 				console.info('[' + now + '] Data posted: ' + body);
 			});
+			break;
+		case 'DELETE':
+			res.write('DELETE' + req.url);
 			break;
 		default:
 			break;
