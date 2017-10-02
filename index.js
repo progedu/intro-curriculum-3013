@@ -21,6 +21,9 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+		case 'DELETE': // DELETEメソッドが呼ばれた際にそのURLをコンテンツとしてレスポンスに返す
+			res.write('DELETE ' + req.url);
+			break;
 		default:
 			break;
 	}
