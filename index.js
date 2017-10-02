@@ -14,7 +14,11 @@ const server = http.createServer((req, res) => {
 			break;
 		case 'POST':
 			res.write('POST ' + req.url);
-			req.on('data', (data) => {
+			let body = [];
+			req.on('data', (chunk) => {
+				body.push(chunk);
+			}).on('end', () => {
+				body = Buffer.concat(body).toString();
 				console.info('[' + now + '] Data posted: ' + data);
 			});
 			break;
