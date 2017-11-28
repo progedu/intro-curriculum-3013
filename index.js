@@ -22,6 +22,7 @@ const server = http.createServer((req, res) => {
 			});
 			break;
 		default:
+		res.write('DELETE ' + req.url);
 			break;
 	}
 	res.end();
