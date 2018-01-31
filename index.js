@@ -21,6 +21,9 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+		case 'DELETE':
+			res.write('DELETE' + req.url);
+			break;
 		default:
 			break;
 	}
@@ -30,7 +33,7 @@ const server = http.createServer((req, res) => {
 }).on('clientError', (e) => {
 	console.error('[' + new Date() + '] Client Error', e);
 });
-const port = 8000;
+const port = 3000;
 server.listen(port, () => {
 	console.info('[' + new Date() + '] Listening on ' + port);
 });
