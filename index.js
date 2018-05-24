@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => {
 		case 'GET':
 			res.write('GET ' + req.url);
 			break;
+		
 		case 'POST':
 			res.write('POST ' + req.url);
 			let body = [];
@@ -18,9 +19,14 @@ const server = http.createServer((req, res) => {
 				body.push(chunk);
 			}).on('end', () => {
 				body = Buffer.concat(body).toString();
-				console.info('[' + now + '] Data posted: ' + body);
+				console.info('[' + now + '] Data posted: ' 
 			});
 			break;
+		
+		case 'DELETE':                                         
+			res.write('DELETE ' + req.url);  
+			break;
+		
 		default:
 			break;
 	}
