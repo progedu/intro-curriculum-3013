@@ -1,4 +1,5 @@
 'use strict';
+
 const http = require('http');
 const server = http.createServer((req, res) => {
 	const now = new Date();
@@ -21,9 +22,13 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+			case 'DELETE':
+				res.write('DELETE' + req.url);
+			break
 		default:
 			break;
 	}
+
 	res.end();
 }).on('error', (e) => {
 	console.error('[' + new Date() + '] Server Error', e);
