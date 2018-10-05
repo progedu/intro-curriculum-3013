@@ -13,6 +13,9 @@ const server = http.createServer((req, res) => {
 			break;
 		case 'POST':
 			res.write('POST ' + req.url);
+			break;
+		case 'DELETE':
+			res.write('DELETE ' + req.url);
 			let body = [];
 			req.on('data', (chunk) => {
 				body.push(chunk);
