@@ -21,6 +21,10 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+		case 'DELETE':
+			res.write('DELETE ' + req.url);
+			console.log('req.url の中身は DELETE です。');
+			break;
 		default:
 			break;
 	}
