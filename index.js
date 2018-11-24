@@ -7,6 +7,7 @@ const server = http.createServer((req, res) => {
 		'Content-Type': 'text/plain; charset=utf-8'
 	});
 
+	console.log(`${req.method} です。`);
 	switch (req.method) {
 		case 'GET':
 			res.write('GET ' + req.url);
@@ -20,6 +21,9 @@ const server = http.createServer((req, res) => {
 				body = Buffer.concat(body).toString();
 				console.info('[' + now + '] Data posted: ' + body);
 			});
+			break;
+		case 'DELETE':
+			res.write(`DELETE ${req.url}`);
 			break;
 		default:
 			break;
