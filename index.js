@@ -21,7 +21,9 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
-		default:
+		case 'DELETE':
+            		res.write('DELETE ' + req.url);
+            break;		default:
 			break;
 	}
 	res.end();
