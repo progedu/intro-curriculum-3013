@@ -19,8 +19,10 @@ const server = http.createServer((req, res) => {
 			}).on('end', () => {
 				body = Buffer.concat(body).toString();
 				console.info('[' + now + '] Data posted: ' + body);
-			});
-			break;
+            });
+        case 'DELETE':
+            res.write('DELETE ' + req.url);
+            break;
 		default:
 			break;
 	}
