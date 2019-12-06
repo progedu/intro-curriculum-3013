@@ -20,6 +20,10 @@ const server = http.createServer((req, res) => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
       break;
+    // DELETE メソッドが呼び出された場合の処理
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
+      break;
     default:
       break;
   }
