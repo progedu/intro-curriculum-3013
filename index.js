@@ -7,7 +7,6 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/plain; charset=utf-8'
   });
 
-<<<<<<< HEAD
 	switch (req.method) {
 		case 'GET':
 			res.write('GET ' + req.url);
