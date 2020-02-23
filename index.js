@@ -1,3 +1,5 @@
+//jshint esversion:6
+
 'use strict';
 const http = require('http');
 const server = http.createServer((req, res) => {
@@ -11,6 +13,8 @@ const server = http.createServer((req, res) => {
 		case 'GET':
 			res.write('GET ' + req.url);
 			break;
+		case 'DELETE':
+			res.write('DELETE'+req.url);
 		case 'POST':
 			res.write('POST ' + req.url);
 			let body = [];
