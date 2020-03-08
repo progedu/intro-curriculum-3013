@@ -21,7 +21,8 @@ const server = http.createServer((req, res) => {
       });
       break;
     case 'DELETE':
-      res.write(`DELETE ${req.url}`);
+      // 出力に改行して見やすいように \n を追加
+      res.write(`DELETE ${req.url} \n`);
       break;
     default:
       break;
