@@ -20,6 +20,10 @@ const server = http.createServer((req, res) => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
       break;
+    case 'DELETE':
+      // 出力に改行して見やすいように \n を追加
+      res.write(`DELETE ${req.url} \n`);
+      break;
     default:
       break;
   }
