@@ -17,11 +17,14 @@ const server = http.createServer((req, res) => {
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
       }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
+        console.info('[' + now + '] data posted: ' + rawData);
       });
       break;
-    default:
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
       break;
+      default:
+        break;
   }
   res.end();
 }).on('error', (e) => {
