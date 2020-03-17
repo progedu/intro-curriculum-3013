@@ -27,6 +27,7 @@ const server = http.createServer((req, res) => {
 		default:
 			break;
 	}
+	
 	res.end();
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
