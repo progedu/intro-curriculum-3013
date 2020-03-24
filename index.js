@@ -21,6 +21,9 @@ const server = http.createServer((req, res) => {
 				console.info('[' + now + '] Data posted: ' + body);
 			});
 			break;
+		case 'DELETE':
+			res.write('DELETE' + req.url);
+			break;
 		default:
 			break;
 	}
@@ -33,4 +36,4 @@ const server = http.createServer((req, res) => {
 const port = 8000;
 server.listen(port, () => {
 	console.info('[' + new Date() + '] Listening on ' + port);
-});
+s});
