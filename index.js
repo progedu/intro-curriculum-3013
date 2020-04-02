@@ -20,6 +20,9 @@ const server = http.createServer((req, res) => {
 				console.info(`${now} Data posted: ${body}`);
 			});
 			break;
+		case 'DELETE':
+			res.write(`DELETE ${req.url}`);
+			console.info(`${now} DELETE requested by ${req.connection.remoteAddress}`);
 		default:
 			break;
 	}
