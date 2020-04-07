@@ -20,7 +20,7 @@ const server = http
             rawData = rawData + chunk;
           })
           .on("end", () => {
-            console.info("[" + now + "] Data posted: " + rawData);
+            console.info("[" + now + "]" Data posted: + rawData);
           });
         break;
       case "DELETE":
