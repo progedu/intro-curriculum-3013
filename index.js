@@ -20,6 +20,9 @@ const server = http.createServer((req, res) => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
       break;
+    case 'DALETE':
+      res.write('DALETE ' + req.url);
+      break;
     default:
       break;
   }
