@@ -1,27 +1,57 @@
 'use strict';
 const http = require('http');
+const fs = require('fs');
+const fileName = './log.json';
+let log = new Map();
+try {
+  const allData = fs.readFileSync(fileName, 'utf8');
+  log = new Map(JSON.parse(allData));
+} catch (ignore) {
+  console.log('過去ログ無し');
+}
 const server = http.createServer((req, res) => {
-  const now = new Date();
-  console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
+  var now = new Date();
+  console.info('[' + now + '] Requested by ' + req.connection.remoteAddress); let time_Obj = {
+    month: now.getMonth() + 1,
+    day: now.getDate(),
+    year: now.getFullYear(),
+    week: ["日", "月", "火", "水", "木", "金", "土"][(now.getDay())],
+    Hours: now.getHours(),
+    Minutes: now.getMinutes(),
+    Seconds: now.getSeconds()
+  }
+  let logData = `${time_Obj.year}/${time_Obj.month}/${time_Obj.day}(${time_Obj.week}) ${time_Obj.Hours}:${time_Obj.Minutes}:${time_Obj.Seconds}「${req.connection.remoteAddress}」からアクセス有り`;
+  log.set(now, logData);
+  saveTasks();
+  console.info(logData);
+
   res.writeHead(200, {
     'Content-Type': 'text/plain; charset=utf-8'
   });
 
+  switch (req.url) {
+    case '/log':
+      res.write(logData);
+      break;
+    default:
+      break;
+  }
+
   switch (req.method) {
     case 'GET':
-      res.write('GET ' + req.url);
+      res.write('GET ' + req.url + '\n');
       break;
     case 'POST':
-      res.write('POST ' + req.url);
-      let rawData = '';
+      res.write('POST ' + req.url + '\n');
+      let body = "";
       req.on('data', (chunk) => {
-        rawData = rawData + chunk;
+        body += chunk;
       }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
+        console.info('[' + now + '] Data posted: ' + body);
       });
       break;
     case 'DELETE':
-      res.write('DELETE ' + req.url);
+      res.write('DELETE ' + req.url + '\n');
       break;
     default:
       break;
@@ -36,3 +66,7 @@ const port = 8000;
 server.listen(port, () => {
   console.info('[' + new Date() + '] Listening on ' + port);
 });
+
+function saveTasks() {
+  fs.writeFileSync(fileName, JSON.stringify(Array.from(log)), 'utf8');
+}
