@@ -13,17 +13,21 @@ const server = http.createServer((req, res) => {
       break;
     case 'POST':
       res.write('POST ' + req.url);
-      let rawData = '';
+      let body = [];
       req.on('data', (chunk) => {
-        rawData = rawData + chunk;
+        body.push(chunk);
       }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
+        body = Buffer.concat(body).toString();
+        console.info('[' + now + '] Data posted: ' + body);
       });
+      break;
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
       break;
     default:
       break;
-  }
-  res.end();
+    }
+    res.end();
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
 }).on('clientError', (e) => {
