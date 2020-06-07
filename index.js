@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => {
     case 'GET':
       res.write('GET ' + req.url);
       break;
+
     case 'POST':
       res.write('POST ' + req.url);
       let rawData = '';
@@ -20,6 +21,11 @@ const server = http.createServer((req, res) => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
       break;
+
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
+      break;
+
     default:
       break;
   }
