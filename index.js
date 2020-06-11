@@ -8,6 +8,9 @@ const server = http.createServer((req, res) => {
   });
 
   switch (req.method) {
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
+      break;
     case 'GET':
       res.write('GET ' + req.url);
       break;
