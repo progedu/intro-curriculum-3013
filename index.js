@@ -9,17 +9,20 @@ const server = http.createServer((req, res) => {
 
   switch (req.method) {
     case 'GET':
-      res.write('GET ' + req.url);
+      res.write('ゲット！ ' + req.url);
       break;
     case 'POST':
-      res.write('POST ' + req.url);
+      res.write('ポスト！ ' + req.url);
       let rawData = '';
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
       }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
+        console.info(rawData);
       });
-      break;
+	  break;
+	case 'DELETE':
+		res.write('デリート！ ' + req.url);
+		break;
     default:
       break;
   }
