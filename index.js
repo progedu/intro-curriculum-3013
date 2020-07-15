@@ -7,7 +7,6 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/plain; charset=utf-8'
   });
 
-<<<<<<< HEAD
 	switch (req.method) {
 		case 'GET':
 			res.write('GET ' + req.url);
@@ -29,25 +28,7 @@ const server = http.createServer((req, res) => {
 			break;
 	}
 	res.end();
-=======
-  switch (req.method) {
-    case 'GET':
-      res.write('GET ' + req.url);
-      break;
-    case 'POST':
-      res.write('POST ' + req.url);
-      let rawData = '';
-      req.on('data', (chunk) => {
-        rawData = rawData + chunk;
-      }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
-      });
-      break;
-    default:
-      break;
-  }
-  res.end();
->>>>>>> master-2019
+
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
 }).on('clientError', (e) => {
