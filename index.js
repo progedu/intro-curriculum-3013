@@ -1,5 +1,6 @@
 'use strict';
 const http = require('http');
+const { runInNewContext } = require('vm');
 const server = http.createServer((req, res) => {
   const now = new Date();
   console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
@@ -19,6 +20,9 @@ const server = http.createServer((req, res) => {
       }).on('end', () => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
+      break;
+    case 'DELETE':
+      res.write('DELETE' + req.url);
       break;
     default:
       break;
