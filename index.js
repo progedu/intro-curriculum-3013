@@ -6,23 +6,27 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/plain; charset=utf-8'
   });
-
+  
   switch (req.method) {
     case 'GET':
       res.write('GET ' + req.url);
       break;
     case 'POST':
       res.write('POST ' + req.url);
-      let rawData = '';
+      let body = '';
       req.on('data', (chunk) => {
-        rawData = rawData + chunk;
+        body += chunk;//送られてきた細切れのデータ（chunk)を文字列連結で足して元通りにする
       }).on('end', () => {
-        console.info('[' + now + '] Data posted: ' + rawData);
+        console.log(body);
       });
       break;
-    default:
-      break;
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
+      break;  
+      default:
+        break;
   }
+
   res.end();
 }).on('error', (e) => {
   console.error('[' + new Date() + '] Server Error', e);
