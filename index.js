@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
     case 'DELETE':
       res.write('DELETE' + req.url);
       break;
-    
     default:
       break;
   }
