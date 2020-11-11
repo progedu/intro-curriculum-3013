@@ -16,10 +16,13 @@ const server = http.createServer((req, res) => {
       let rawData = '';
       req.on('data', (chunk) => {
         rawData = rawData + chunk;
-      }).on('end', () => {
+	  }).on('end', () => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
-      break;
+	  break;
+	case 'DELETE':
+		res.write('DELETE ' + req.url);
+		break;
     default:
       break;
   }
