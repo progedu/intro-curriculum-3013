@@ -22,6 +22,10 @@ const server = http.createServer((req, res) => {
       break;
     default:
       break;
+    case 'DELETE':
+      res.write('DELETE' + req.url);
+      console.info('[' + now + '] Deleted')
+      break;
   }
   res.end();
 }).on('error', (e) => {
