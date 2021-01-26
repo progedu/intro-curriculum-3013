@@ -31,6 +31,7 @@ const server = http.createServer((req, res) => {
 		// DELETEメソッドの場合
 		case 'DELETE':
 			res.write('DELETE ' + req.url);
+			break;
         default:
             break;
     }
