@@ -6,7 +6,6 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/plain; charset=utf-8'
   });
-
   switch (req.method) {
     case 'GET':
       res.write('GET ' + req.url);
@@ -19,6 +18,9 @@ const server = http.createServer((req, res) => {
       }).on('end', () => {
         console.info('[' + now + '] Data posted: ' + rawData);
       });
+      break;
+    case 'DELETE':
+      res.write('DELETE ' + req.url);
       break;
     default:
       break;
